@@ -1,3 +1,5 @@
+@extends('layout.menu')
+@section('konten')
 <form method="POST" action="{{ route('kategori.update', $kategori->id) }}">
     @csrf
     @method('PUT')
@@ -14,3 +16,4 @@
     <button type="submit">Save</button>
     <a href="{{ route('kategori.tampil') }}">Back</a>
 </form>
+@endsection

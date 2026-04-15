@@ -1,7 +1,8 @@
+@extends('layout.menu')
+@section('konten')
 <form method="POST" action="{{ route('anggota.update', $anggota->id) }}">
     @csrf
     @method('PUT')
-
     Kode anggota
     <input type="number" name="kode_anggota" required readonly value="{{ old("kode_anggota",$anggota->kode_anggota) }}">
     @error('kode_anggota') {{ $message }} @enderror
@@ -37,3 +38,4 @@
     <button type="submit">Save</button>
     <a href="{{ route('anggota.tampil') }}">Back</a>
 </form>
+@endsection

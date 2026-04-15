@@ -1,3 +1,5 @@
+@extends('layout.menu')
+@section('konten')
 <form method="POST" action="{{ route('kategori.simpan') }}">
     @csrf
     
@@ -12,4 +14,7 @@
    
     <button type="submit">Save</button>
     <a href="{{ route('kategori.tampil') }}">Back</a>
+    </div>
+</div>
 </form>
+@endsection

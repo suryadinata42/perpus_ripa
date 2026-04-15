@@ -1,6 +1,7 @@
+@extends('layout.menu')
+@section('konten')
 <form method="POST" action="{{ route('buku.simpan') }}">
     @csrf
-    
     Kode buku
     <input type="number" name="kode_buku" required>
     @error('kode_buku') {{ $message }} @enderror
@@ -41,3 +42,4 @@
     <button type="submit">Save</button>
     <a href="{{ route('buku.tampil') }}">Back</a>
 </form>
+@endsection
