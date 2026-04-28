@@ -515,7 +515,13 @@ class ComposerStaticInitc57754c93ae34ac3b9b716a0fd2f2149
     );
 
     public static $classMap = array (
-        'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\ControlAnggota' => __DIR__ . '/../..' . '/app/Http/Controllers/ControlAnggota.php',
+        'App\\Http\\Controllers\\ControlBuku' => __DIR__ . '/../..' . '/app/Http/Controllers/ControlBuku.php',
+        'App\\Http\\Controllers\\ControlKategori' => __DIR__ . '/../..' . '/app/Http/Controllers/ControlKategori.php',
+        'App\\Models\\ModelAnggota' => __DIR__ . '/../..' . '/app/Models/ModelAnggota.php',
+        'App\\Models\\ModelBuku' => __DIR__ . '/../..' . '/app/Models/ModelBuku.php',
+        'App\\Models\\ModelDashboard' => __DIR__ . '/../..' . '/app/Models/ModelDashboard.php',
+        'App\\Models\\ModelKategori' => __DIR__ . '/../..' . '/app/Models/ModelKategori.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',

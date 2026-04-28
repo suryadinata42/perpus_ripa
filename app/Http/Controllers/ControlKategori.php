@@ -8,6 +8,7 @@ class ControlKategori extends Controller
 {
     public function tampil()
     {
+        $judul = 'Data kategori';
         $kategori = ModelKategori::all();
         return view("kategori.tampil",compact('kategori'));
     }

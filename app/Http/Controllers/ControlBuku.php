@@ -9,6 +9,7 @@ class ControlBuku extends Controller
 {
     public function tampil()
     {
+        $judul = 'Data buku';
         $buku = ModelBuku::all();
         return view('buku.tampil',compact('buku'));
     }

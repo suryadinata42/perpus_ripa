@@ -10,6 +10,7 @@ class ControlAnggota extends Controller
 {
     public function tampil()
     {
+        $judul = 'Data anggota';
         $anggota = ModelAnggota::all();
         return view('anggota.tampil', compact('anggota'));
     }
@@ -37,7 +38,8 @@ class ControlAnggota extends Controller
         $anggota -> status = $request->status;
         $anggota -> save();
 
-        return redirect()-> route('anggota.tampil')->with('Berhasil','Data Tersimpan');
+        return redirect()->route('anggota.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
+        // return redirect()-> route('anggota.tampil')->with('Berhasil','Data Tersimpan');
     }
 
     public function edit($id)

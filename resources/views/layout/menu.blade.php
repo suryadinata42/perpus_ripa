@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="icon" href="img/logo.png" type="image/png" />
-    <title>STMIK Banjarbaru</title>
+    <title>Home</title>
 
     <link href="{{ asset('assets/lib/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/lib/Ionicons/css/ionicons.css') }}" rel="stylesheet">
@@ -15,6 +15,11 @@
     <link href="{{ asset('assets/lib/rickshaw/rickshaw.min.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('assets/css/amanda.css') }}">
+    <style>
+        body, h1, h2, h3, h4, h5, h6, p, a, span, div, .nav-link, .am-title {
+            font-family: 'Helvetica', 'Arial', sans-serif !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -74,21 +79,27 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('anggota.tampil') }}" class="nav-link">
-                            <i class="icon ion-ios-home-outline"></i>
+                        <a href="{{ route('anggota.tampil') }}" class="nav-link class="nav-link {{ Request::is('anggota') ? 'active' : '' }}">
+                            <i class="fa fa-briefcase" style="font-size:1.2em"></i> 
                             <span>Anggota</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route("buku.tampil") }}" class="nav-link">
-                            <i class="icon ion-ios-home-outline"></i>
+                        <a href="{{ route("buku.tampil") }}" class="nav-link class="nav-link class="nav-link {{ Request::is('buku') ? 'active' : '' }}">
+                            <i class="fa fa-briefcase" style="font-size:1.2em"></i> 
                             <span>Buku</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route("kategori.tampil")}}" class="nav-link">
-                            <i class="icon ion-ios-home-outline"></i>
+                        <a href="{{ route("kategori.tampil")}}" class="nav-link class="nav-link class="nav-link {{ Request::is('kategori') ? 'active' : '' }}">
+                            <i class="fa fa-briefcase" style="font-size:1.2em"></i> 
                             <span>Kategori Buku</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("pengguna.tampil")}}" class="nav-link class="nav-link class="nav-link {{ Request::is('pengguna') ? 'active' : '' }}">
+                            <i class="fa fa-briefcase" style="font-size:1.2em"></i> 
+                            <span>Pengguna</span>
                         </a>
                     </li>
 
@@ -115,7 +126,7 @@
 
     <div class="am-mainpanel">
         <div class="am-pagetitle">
-            <h5 class="am-title">Dashboard</h5>
+            <h5 class="am-title">{{ isset($judul) ? ($judul) : '' }}</h5>         
         </div>
         <div class="am-pagebody">
 
@@ -146,6 +157,36 @@
     <script src="{{ asset('js/amanda.js') }}"></script>
     <script src="{{ asset('js/ResizeSensor.js') }}"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if(session('status'))
+	<script>
+		Swal.fire({
+		title: "{{session('status')['judul']}}",
+		text: "{{session('status')['pesan']}}",
+		icon: "{{session('status')['icon']}}"
+		});
+	</script>
+	@endif
+
+    <script>
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Yakin Data ini?', 
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6', 
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!', 
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+    </script>
+
 </body>
 
 </html>
