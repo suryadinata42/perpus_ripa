@@ -19,7 +19,7 @@
     @error('penerbit') {{ $message }} @enderror
     <br>
     tahun terbit (Hanya Tahun)
-    <input type="number" name="tahun_terbit" min="1900" max="{{ date('Y') }}" placeholder="Contoh: 2023" required>
+    <input type="number" name="tahun_terbit" min="1900" max="{{ date('Y') }}" placeholder="" required>
     @error('tahun_terbit') <div>{{ $message }}</div> @enderror
     <br>
     isbn
@@ -34,10 +34,21 @@
     <input type="number" name="jumlah_tersedia" required>
     @error('jumlah_tersedia') {{ $message }} @enderror
     <br>
-    kategori ID
-    <input type="number" name="kategori_id" required>
+    Kategori :
+    <select name="kategori_id" id="pilih_kategori" required onchange="tampilkanDeskripsi()">
+        <option value="" data-deskripsi="">-- Pilih Kategori --</option>
+        @foreach($kategori as $ktgr)
+            <option value="{{ $ktgr->id }}" data-deskripsi="{{ $ktgr->deskripsi }}">
+                {{ $ktgr->nama_kategori }}
+            </option>
+        @endforeach
+    </select>
     @error('kategori_id') {{ $message }} @enderror
     <br>
+    
+    Deskripsi Kategori
+    <input type="text" id="tampil_deskripsi" readonly placeholder="Deskripsi akan muncul otomatis..." style="background-color: #e9ecef; cursor: not-allowed;">
+    <br><br>
 
     <button type="submit">Save</button>
     <a href="{{ route('buku.tampil') }}">Back</a>

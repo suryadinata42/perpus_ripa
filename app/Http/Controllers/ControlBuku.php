@@ -2,20 +2,27 @@
 
 namespace App\Http\Controllers;
 use App\Models\ModelBuku;
+use App\Models\ModelKategori;
 use Illuminate\Http\Request;
 use function Illuminate\Support\years;
+use Illuminate\Support\Facades\DB;
 
 class ControlBuku extends Controller
 {
     public function tampil()
     {
         $judul = 'Data buku';
-        $buku = ModelBuku::all();
+        
+        $buku = DB::table('buku')
+        ->leftJoin('kategori', 'buku.kategori_id', '=', 'kategori.id')
+        ->select('buku.*', 'kategori.nama_kategori', 'kategori.deskripsi')
+        ->get();
         return view('buku.tampil',compact('buku'));
     }
     public function tambah()
     {
-        return view('buku.tambah');
+        $kategori = DB::table('kategori')->get();
+        return view('buku.tambah', compact('kategori'));
     }
 
     public function simpan(Request $request)
@@ -29,7 +36,6 @@ class ControlBuku extends Controller
             'isbn' => "required|numeric",
             'jumlah_total' => "required|integer",
             'jumlah_tersedia' => "required|integer",
-            'kategori_id' => "required",
         ]);
 
         $buku = new ModelBuku();
@@ -49,8 +55,9 @@ class ControlBuku extends Controller
 
     public function edit($id)
     {
-        $buku = ModelBuku::findOrFail($id);
-        return view('buku.edit',compact('buku'));
+        $buku = ModelBuku::where('id', $id)->first();
+        $kategori = DB::table('kategori')->get();
+        return view('buku.edit',compact('buku','kategori'));
     }
 
     public function update(request $request, $id)
@@ -63,10 +70,9 @@ class ControlBuku extends Controller
             'isbn' => "required|numeric",
             'jumlah_total' => "required|integer",
             'jumlah_tersedia' => "required|integer",
-            'kategori_id' => "required",
         ]);
 
-        $buku = ModelBuku::findOrFail($id);
+        $buku = ModelBuku::where('id', $id)->first();
         $buku->update([
         $buku -> kode_buku = $request->kode_buku,
         $buku -> judul = $request->judul,

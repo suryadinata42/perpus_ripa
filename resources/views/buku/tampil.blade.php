@@ -19,7 +19,8 @@
                 <td>isbn</td>
                 <td>jumlah total</td>
                 <td>jumlah tersedia</td>
-                <td>kategori id</td>
+                <td>Nama kategori</td>
+                <td>Deskripsi Buku</td>
                 <td>Aksi</td>
             </tr>
         </thead>
@@ -35,7 +36,8 @@
                 <td>{{ $d->isbn}}</td>
                 <td>{{ $d->jumlah_total}}</td>
                 <td>{{ $d->jumlah_tersedia}}</td>
-                <td>{{ $d->kategori_id}}</td>
+                <td>{{ $d->nama_kategori}}</td>
+                <td>{{ $d->deskripsi}}</td>
                 <td>
                     <form action="{{ route('buku.hapus', $d->id) }}" method="post"
                     onsubmit="return confirm('Yakin hapus data ini');">
