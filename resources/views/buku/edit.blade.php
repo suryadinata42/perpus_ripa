@@ -36,26 +36,18 @@
     @error('jumlah_tersedia') {{ $message }} @enderror
     <br>
     Kategori :
-    <!-- Pastikan name-nya adalah kategori_id -->
-    <select name="kategori_id" id="pilih_kategori" required onchange="tampilkanDeskripsi()">
-        <option value="" data-deskripsi="">-- Pilih Kategori --</option>
+    <select name="kategori_id" required>
+        <option value="">-- Pilih Kategori --</option>
         @foreach($kategori as $ktgr)
-            <!-- Memilih otomatis kategori yang sesuai dengan data buku saat ini -->
-            <option value="{{ $ktgr->id }}" 
-                    data-deskripsi="{{ $ktgr->deskripsi }}"
-                    {{ $buku->kategori_id == $ktgr->id ? 'selected' : '' }}>
+            <option value="{{ $ktgr->id }}">
                 {{ $ktgr->nama_kategori }}
             </option>
         @endforeach
     </select>
     @error('kategori_id') {{ $message }} @enderror
-    <br>
-    
-    <!-- Input ini hanya untuk menampilkan teks, TIDAK memiliki atribut name="" -->
-    Deskripsi Kategori:
-    <input type="text" id="tampil_deskripsi" readonly style="background-color: #e9ecef; cursor: not-allowed;">
+    <br>    
 
     <button type="submit">Save</button>
-    <a href="{{ route('anggota.tampil') }}">Back</a>
+    <a href="{{ route('buku.tampil') }}">Back</a>
 </form>
 @endsection
