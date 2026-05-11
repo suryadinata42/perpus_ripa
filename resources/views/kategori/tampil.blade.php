@@ -23,13 +23,13 @@
                 <td>{{ $d->nama_kategori}}</td>
                 <td>{{ $d->deskripsi}}</td>
                 <td>
-                    <form action="{{ route('kategori.hapus', $d->id) }}" method="post"
-                    onsubmit="return confirm('Yakin hapus data ini');">
+                    <form id="delete-form-{{ $d->id }}" method="POST" action="{{ route('kategori.hapus', $d->id) }}">
                     @csrf
                     @method('DELETE')
-                    <a href="{{ route('kategori.edit',$d->id) }}" class="btn btn-warning btn-sm">Ubah</a>
-                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                    </form>
+                    <a href="{{ route('kategori.edit', $d->id) }}" class="btn btn-success btn-sm khusus mb-1"><i class="fa fa-edit"></i></a>
+                    <button type="button" class="btn btn-danger btn-sm mb-1" 
+                    onclick="confirmDelete({{ $d->id }})" title="Hapus Data"><i class="fa fa-trash"></i></button>
+                </form>
                 </td>
             </tr>
             @endforeach

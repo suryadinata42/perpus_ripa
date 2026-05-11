@@ -36,10 +36,10 @@
     @error('jumlah_tersedia') {{ $message }} @enderror
     <br>
     Kategori :
-    <select name="kategori_id" required>
+    <select name="kategori_id" required >
         <option value="">-- Pilih Kategori --</option>
         @foreach($kategori as $ktgr)
-            <option value="{{ $ktgr->id }}">
+            <option value="{{ $ktgr->id }}" {{ $buku->kategori_id == $ktgr->id ? 'selected' : '' }}>
                 {{ $ktgr->nama_kategori }}
             </option>
         @endforeach

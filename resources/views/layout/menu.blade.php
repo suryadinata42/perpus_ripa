@@ -102,6 +102,27 @@
                             <span>Pengguna</span>
                         </a>
                     </li>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("peminjam.tampil")}}" class="nav-link class="nav-link class="nav-link {{ Request::is('peminjam') ? 'active' : '' }}">
+                            <i class="fa fa-briefcase" style="font-size:1.2em"></i> 
+                            <span>Peminjam</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("pengembalian.tampil")}}" class="nav-link class="nav-link class="nav-link {{ Request::is('pengembalian') ? 'active' : '' }}">
+                            <i class="fa fa-briefcase" style="font-size:1.2em"></i> 
+                            <span>Pengembalian</span>
+                        </a>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("detail_pengembalian.tampil")}}" class="nav-link class="nav-link class="nav-link {{ Request::is('detail_pengembalian') ? 'active' : '' }}">
+                            <i class="fa fa-briefcase" style="font-size:1.2em"></i> 
+                            <span>detail Pengembalian</span>
+                        </a>
+                    </li>
+                    
 
 
                     <!--

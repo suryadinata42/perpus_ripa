@@ -65,14 +65,14 @@ class ControlAnggota extends Controller
             'status' => $request->status,
 
         ]);
-        return redirect()->route('anggota.tampil')->with("Berhasil","Data Tersimpan");
+         return redirect()->route('anggota.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
     }
 
     public function hapus($id)
     {
         $anggota = ModelAnggota::findOrFail($id);
         $anggota->delete();
-        return redirect()->route('anggota.tampil')->with('Berhasil','Data Terhapus');
+         return redirect()->route('anggota.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
     }
 }
 

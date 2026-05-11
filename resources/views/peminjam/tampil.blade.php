@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($pengguna as $d)
+            @foreach ($peminjam as $d)
             <tr>
                 <td>{{ $loop->iteration}}</td>
                 <td>{{ $d->anggota_id}}</td>

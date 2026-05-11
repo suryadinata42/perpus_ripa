@@ -32,7 +32,7 @@ class ControlPengguna extends Controller
         $pengguna -> peran = $request->peran;
         $pengguna -> save();
 
-        return redirect()-> route('pengguna.tampil')->with('Berhasil','Data Tersimpan');
+        return redirect()->route('pengguna.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
     }
 
     public function edit($id)
@@ -55,13 +55,13 @@ class ControlPengguna extends Controller
         $pengguna -> peran = $request->peran;
         $pengguna->save();
 
-        return redirect()-> route('pengguna.tampil')->with('Berhasil','Data Tersimpan');
+        return redirect()->route('pengguna.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
         
     }
     public function hapus($id)
     {
         $pengguna = ModelPengguna::findOrFail($id);
         $pengguna->delete();
-        return redirect()->route('pengguna.tampil')->with('Sukses', 'Data Terhapus');
+        return redirect()->route('pengguna.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Terhapus', 'icon' => 'success']);
     }
 }

@@ -29,7 +29,7 @@ class ControlKategori extends Controller
         $kategori -> deskripsi = $request -> deskripsi;
         $kategori -> save();
 
-        return redirect()->route('kategori.tampil')->with('Berhasil','Data Tersimpan');
+        return redirect()->route('kategori.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
 
     }
 
@@ -50,13 +50,13 @@ class ControlKategori extends Controller
         $kategori -> deskripsi = $request -> deskripsi;
         $kategori -> save();
 
-        return redirect()->route('kategori.tampil')->with('Berhasil','Data Tersimpan');
+        return redirect()->route('kategori.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
     }
 
     public function hapus($id)
     {    
         $kategori = ModelKategori::findOrFail($id);
         $kategori->delete();
-        return redirect()->route('kategori.tampil')->with('Berhasil','Data Terhapus');
+        return redirect()->route('kategori.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Terhapus', 'icon' => 'success']);
     }
 }

@@ -3,18 +3,21 @@
 namespace App\Http\Controllers;
 use App\Models\ModelPengembalian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ControlPengembalian extends Controller
 {
     public function tampil()
     {
-        $judul = 'Data pengembalian';
-        $pengembalian = ModelPengembalian::all();
+        $pengembalian = DB::table('pengembalian')
+        ->leftJoin('peminjam', 'pengembalian.peminjam_id', '=', 'peminjam.id')
+        ->get();
         return view('pengembalian.tampil',compact('pengembalian'));
     }
     public function tambah()
     {
-        return view('pengembalian.tambah');
+        $pesanan = DB::table('pesanan')->get();
+        return view('pengembalian.tambah', compact('pesanan'));
     }
 
     public function simpan(Request $request)
@@ -30,9 +33,9 @@ class ControlPengembalian extends Controller
         $pengembalian -> tanggal_dikembalikan = $request->email;
         $pengembalian -> denda = $request->peran;
         $pengembalian -> kondisi_buku = $request->kondisi_buku;
-        $pengguna -> save();
+        $pengembalian -> save();
 
-        return redirect()-> route('pengembalian.tampil')->with('Berhasil','Data Tersimpan');
+        return redirect()->route('pengembalian.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
     }
 
     public function edit($id)
@@ -48,20 +51,20 @@ class ControlPengembalian extends Controller
             'password' => "required",
         ]);
 
-        $pengguna = ModelPengembalian::findOrFail($id);
-        $pengguna -> nama = $request->nama;
-        $pengguna -> email = $request->email;
-        $pengguna -> password = $request->password;
-        $pengguna -> peran = $request->peran;
-        $pengguna->save();
+        $pengembalian = ModelPengembalian::findOrFail($id);
+        $pengembalian -> peminjam_id = $request->nama;
+        $pengembalian -> tanggal_dikembalikan = $request->email;
+        $pengembalian -> denda = $request->peran;
+        $pengembalian -> kondisi_buku = $request->kondisi_buku;
+        $pengembalian->save();
 
-        return redirect()-> route('pengembalian.tampil')->with('Berhasil','Data Tersimpan');
+        return redirect()->route('pengembalian.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
         
     }
     public function hapus($id)
     {
         $pengembalian = ModelPengembalian::findOrFail($id);
         $pengembalian->delete();
-        return redirect()->route('pengembalian.tampil')->with('Sukses', 'Data Terhapus');
+        return redirect()->route('pengembalian.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Terhapus', 'icon' => 'success']);
     }
 }

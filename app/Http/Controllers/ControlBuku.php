@@ -50,7 +50,7 @@ class ControlBuku extends Controller
         $buku -> kategori_id = $request->kategori_id;
         $buku -> save();
 
-        return redirect()-> route('buku.tampil')->with('Berhasil','Data Tersimpan');
+        return redirect()->route('buku.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
     }
 
     public function edit($id)
@@ -85,13 +85,13 @@ class ControlBuku extends Controller
         $buku -> kategori_id = $request->kategori_id,
         ]);
 
-        return redirect()-> route('buku.tampil')->with('Berhasil','Data Tersimpan');
+        return redirect()->route('buku.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
         
     }
     public function hapus($id)
     {
         $buku = ModelBuku::findOrFail($id);
         $buku->delete();
-        return redirect()->route('buku.tampil')->with('Sukses', 'Data Terhapus');
+        return redirect()->route('buku.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Terhapus', 'icon' => 'success']);
     }
 }

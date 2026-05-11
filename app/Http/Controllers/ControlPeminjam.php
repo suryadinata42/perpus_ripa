@@ -32,7 +32,7 @@ class ControlPeminjam extends Controller
         $peminjam -> status = $request->status;
         $peminjam -> save();
 
-        return redirect()-> route('peminjam.tampil')->with('Berhasil','Data Tersimpan');
+        return redirect()->route('peminjam.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
     }
 
     public function edit($id)
@@ -55,13 +55,13 @@ class ControlPeminjam extends Controller
         $peminjam -> status = $request->status;
         $peminjam -> save();
 
-        return redirect()-> route('peminjam.tampil')->with('Berhasil','Data Tersimpan');
+        return redirect()->route('peminjam.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
         
     }
     public function hapus($id)
     {
-        $penggpeminjamuna = ModelPeminjam::findOrFail($id);
+        $peminjam = ModelPeminjam::findOrFail($id);
         $peminjam->delete();
-        return redirect()->route('peminjam.tampil')->with('Sukses', 'Data Terhapus');
+        return redirect()->route('peminjam.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Terhapus', 'icon' => 'success']);
     }
 }
