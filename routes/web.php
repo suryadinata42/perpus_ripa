@@ -4,7 +4,7 @@ use App\Http\Controllers\ControlAnggota;
 use App\Http\Controllers\ControlBuku;
 use App\Http\Controllers\ControlKategori;
 use App\Http\Controllers\ControlDashboard;
-use App\Http\Controllers\ControlDetail_pengembalian;
+use App\Http\Controllers\ControlDetailpeminjaman;
 use App\Http\Controllers\ControlPeminjam;
 use App\Http\Controllers\ControlPengembalian;
 use App\Http\Controllers\ControlPengguna;
@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+}) ->name('/');
 Route::get('/home', function () {
     return view('welcome');
 }) ->name('home');
+
 
 
 Route::get('/home', [ControlDashboard::class, 'index'])->name('home');
@@ -65,12 +66,12 @@ Route::get('/pengembalian/{id}/edit',[ControlPengembalian::class,'edit'])->name(
 Route::put('/pengembalian/{id}/update',[ControlPengembalian::class,'update'])->name("pengembalian.update");
 Route::delete('/pengembalian/{id}/hapus',[ControlPengembalian::class,'hapus'])->name("pengembalian.hapus");
 
-Route::get('detail_pengembalian',[ControlDetail_pengembalian::class,'tampil'])->name("detail_pengembalian.tampil");
-Route::get('/detail_pengembalian/tambah',[ControlDetail_pengembalian::class,'tambah'])->name("detail_pengembalian.tambah");
-Route::post('/detail_pengembalian/simpan',[ControlDetail_pengembalian::class,'simpan'])->name("detail_pengembalian.simpan");
-Route::get('/detail_pengembalian/{id}/edit',[ControlDetail_pengembalian::class,'edit'])->name("detail_pengembalian.edit");
-Route::put('/detail_pengembalian/{id}/update',[ControlDetail_pengembalian::class,'update'])->name("detail_pengembalian.update");
-Route::delete('/detail_pengembalian/{id}/hapus',[ControlDetail_pengembalian::class,'hapus'])->name("detail_pengembalian.hapus");
+Route::get('detail_peminjaman',[ControlDetailpeminjaman::class,'tampil'])->name("detail_peminjaman.tampil");
+Route::get('/detail_peminjaman/tambah',[ControlDetailpeminjaman::class,'tambah'])->name("detail_peminjaman.tambah");
+Route::post('/detail_peminjaman/simpan',[ControlDetailpeminjaman::class,'simpan'])->name("detail_peminjaman.simpan");
+Route::get('/detail_peminjaman/{id}/edit',[ControlDetailpeminjaman::class,'edit'])->name("detail_peminjaman.edit");
+Route::put('/detail_peminjaman/{id}/update',[ControlDetailpeminjaman::class,'update'])->name("detail_peminjaman.update");
+Route::delete('/detail_peminjaman/{id}/hapus',[ControlDetailpeminjaman::class,'hapus'])->name("detail_peminjaman.hapus");
 
 
 

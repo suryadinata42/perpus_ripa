@@ -12,7 +12,7 @@ class ControlAnggota extends Controller
     {
         $judul = 'Data anggota';
         $anggota = ModelAnggota::all();
-        return view('anggota.tampil', compact('anggota'));
+        return view('anggota.tampil', compact('anggota','judul'));
     }
 
     public function tambah()

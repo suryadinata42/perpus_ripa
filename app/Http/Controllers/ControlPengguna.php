@@ -8,9 +8,9 @@ class ControlPengguna extends Controller
 {
     public function tampil()
     {
-        $judul = 'Data pengguna';
+        $judul = 'Data Pengguna';
         $pengguna = ModelPengguna::all();
-        return view('pengguna.tampil',compact('pengguna'));
+        return view('pengguna.tampil',compact('pengguna','judul'));
     }
     public function tambah()
     {

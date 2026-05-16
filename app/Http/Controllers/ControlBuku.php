@@ -17,7 +17,7 @@ class ControlBuku extends Controller
         ->leftJoin('kategori', 'buku.kategori_id', '=', 'kategori.id')
         ->select('buku.*', 'kategori.nama_kategori', 'kategori.deskripsi')
         ->get();
-        return view('buku.tampil',compact('buku'));
+        return view('buku.tampil',compact('buku','judul'));
     }
     public function tambah()
     {

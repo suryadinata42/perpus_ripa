@@ -1,38 +1,63 @@
 @extends('layout.menu')
 @section('konten')
+
+<!-- Catatan: Jika ini form update, biasanya butuh ID di route-nya seperti route('pengembalian.update', $pengembalian->id) -->
 <form method="POST" action="{{ route('pengembalian.update') }}">
     @csrf
-    Peminjam ID :
-    <select name="peminjam_id" required>
-        <option value="">-- Pilih Kategori --</option>
-        @foreach($peminjam as $pmj)
-            <option value="{{ $peminjam->id }}" {{ $pmj->peminjam_id === $peminjam->id ? 'selected' : '' }}>
-                {{ $pmj->peminjam_id }}
-            </option>
-        @endforeach
-    </select>
-    @error('peminjam_id') {{ $message }} @enderror
-    <br>
+    <!-- WAJIB ditambahkan jika ini adalah form Update/Edit -->
+    @method('PUT')
 
-    Tanggal Dikembaliakan
-    <input type="date" name="tanggal_dikembaliakan" required>
-    @error('tanggal_dikembaliakan') {{ $message }} @enderror
-    <br>
-    Denda
-    <input type="number" name="Denda" required>
-    @error('Denda') {{ $message }} @enderror
-    <br>
-    Kondisi Buku
-    <select name="kondisi_buku" required>
-        <option value="">-- Pilih Kategori --</option>
-        <option value="Baik">Baik</option>
-        <option value="Rusak">Rusak</option>
-        <option value="Hilang">Hilang</option>
-    </select>
-    @error('kondisi_buku') {{ $message }} @enderror
-    <br>
+    <div class="form-group mb-3">
+        <label for="peminjam_id">Peminjam ID</label>
+        <select name="peminjam_id" id="peminjam_id" class="form-control" required>
+            <option value="">-- Pilih Peminjam --</option>
+            @foreach($peminjam as $pmj)
+                <!-- Perbaikan: Menggunakan $pmj->id, bukan $peminjam->id -->
+                <!-- Asumsi variabel data lama adalah $pengembalian -->
+                <option value="{{ $pmj->id }}" {{ old('peminjam_id', $pengembalian->peminjam_id ?? '') == $pmj->id ? 'selected' : '' }}>
+                    {{ $pmj->id }} 
+                </option>
+            @endforeach
+        </select>
+        @error('peminjam_id') 
+            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
+        @enderror
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="tanggal_dikembaliakan">Tanggal Dikembalikan</label>
+        <!-- Hati-hati dengan typo 'dikembaliakan' pada atribut name. Saya biarkan sama dengan kode Anda agar tidak error ke Database -->
+        <input type="date" name="tanggal_dikembaliakan" id="tanggal_dikembaliakan" class="form-control" required value="{{ old('tanggal_dikembaliakan', $pengembalian->tanggal_dikembaliakan ?? '') }}">
+        @error('tanggal_dikembaliakan') 
+            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
+        @enderror
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="Denda">Denda (Rp)</label>
+        <input type="number" name="Denda" id="Denda" class="form-control" required value="{{ old('Denda', $pengembalian->Denda ?? '') }}">
+        @error('Denda') 
+            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
+        @enderror
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="kondisi_buku">Kondisi Buku</label>
+        <select name="kondisi_buku" id="kondisi_buku" class="form-control" required>
+            <option value="">-- Pilih Kondisi --</option>
+            <option value="Baik" {{ old('kondisi_buku', $pengembalian->kondisi_buku ?? '') == 'Baik' ? 'selected' : '' }}>Baik</option>
+            <option value="Rusak" {{ old('kondisi_buku', $pengembalian->kondisi_buku ?? '') == 'Rusak' ? 'selected' : '' }}>Rusak</option>
+            <option value="Hilang" {{ old('kondisi_buku', $pengembalian->kondisi_buku ?? '') == 'Hilang' ? 'selected' : '' }}>Hilang</option>
+        </select>
+        @error('kondisi_buku') 
+            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
+        @enderror
+    </div>
     
-    <button type="submit">Save</button>
-    <a href="{{ route('pengembalian.tampil') }}">Back</a>
+    <div class="form-group mt-4">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{{ route('pengembalian.tampil') }}" class="btn btn-secondary">Back</a>
+    </div>
 </form>
+
 @endsection

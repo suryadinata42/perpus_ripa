@@ -1,12 +1,9 @@
 @extends('layout.menu')
 @section('konten')
 <div class="card">
-    <div class="card-header">
-        <b>Data Pengembalian</b>
-    </div>
 
     <div class="card-body">
-        <a href="{{ route('pengembalian.tambah') }}" class="btn btn-primary mb-3">Tambah Data</a>
+        <a href="{{ route('pengembalian.tambah') }}" class="btn btn-primary mb-3"><i class="fa fa-plus-square"></i>&nbsp; Tambah Data</a>
         <table class="table table-bordered table-hover" style="width:100%; font-family:Helvetica">
         <thead>
             <tr>
@@ -15,7 +12,7 @@
                 <td>Tanggal Dikembaliakan</td>
                 <td>denda</td>
                 <td>kondisi Buku</td>
-                <td>Aksi</td>
+                <td style="display: 100px;">Aksi</td>
             </tr>
         </thead>
         <tbody>

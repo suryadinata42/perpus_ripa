@@ -9,9 +9,9 @@ class ControlPeminjam extends Controller
 {
     public function tampil()
     {
-        $judul = 'Data pengguna';
+        $judul = 'Data Peminjam';
         $peminjam = ModelPeminjam::all();
-        return view('peminjam.tampil',compact('peminjam'));
+        return view('peminjam.tampil',compact('peminjam','judul'));
     }
     public function tambah()
     {

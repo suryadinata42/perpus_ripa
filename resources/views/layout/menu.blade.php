@@ -19,10 +19,50 @@
         body, h1, h2, h3, h4, h5, h6, p, a, span, div, .nav-link, .am-title {
             font-family: 'Helvetica', 'Arial', sans-serif !important;
         }
+        
+        @media (min-width: 992px) {
+        
+        /* === KONDISI 1: SIDEBAR SEMBUNYI === */
+        body:not(.sidebar-aktif) .am-sideleft {
+            left: -230px !important; 
+        }
+        body:not(.sidebar-aktif) .am-mainpanel {
+            margin-left: 0 !important; 
+            width: 100% !important; 
+            max-width: 100% !important;
+        }
+        /* INI OBAT KHUSUS UNTUK PAGETITLE BIAR IKUT MELAR FULL */
+        body:not(.sidebar-aktif) .am-pagetitle {
+            width: 100% !important;
+            max-width: 100% !important;
+            left: 0 !important;
+            margin-left: 0 !important;
+            flex: 1 1 auto !important; /* Memaksa flexbox untuk memenuhi sisa ruang */
+        }
+        
+        /* === KONDISI 2: SIDEBAR MUNCUL === */
+        body.sidebar-aktif .am-sideleft {
+            left: 0 !important;
+        }
+        body.sidebar-aktif .am-mainpanel {
+            margin-left: 230px !important;
+            width: calc(100% - 230px) !important; 
+        }
+        /* Kembalikan pagetitle ke ukuran normal biar gak nabrak saat sidebar muncul */
+        body.sidebar-aktif .am-pagetitle {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+
+        /* === ANIMASI TRANSISI Mulus === */
+        .am-sideleft, .am-mainpanel, .am-pagetitle {
+            transition: all 0.3s ease-in-out !important;
+        }
+    }
     </style>
 </head>
 
-<body>
+<body class="{{ Request::is('/') ? '' : 'sidebar-aktif' }}">
 
     <div class="am-header">
         <div class="am-header-left">
@@ -51,16 +91,16 @@
     <div class="am-sideleft">
         <ul class="nav am-sideleft-tab">
             <li class="nav-item">
-                <a href="#" class="nav-link non active"><i class="icon ion-ios-home-outline tx-24"></i></a>
+                <a href="{{ route('/') }}" class="nav-link"><i class="fa fa-home tx-24"></i></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link non"></a>
+                <a href="{{ route('home') }}" class="nav-link"><i class="fa fa-window-maximize tx-24"></i></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link non"></a>
+                <a href="#" class="nav-link non"><i class="fa fa-briefcase tx-24"></i></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link non"></a>
+                <a href="#" class="nav-link non"><i class="fa fa-info-circle tx-24"></i></a>
             </li>
         </ul>
         <style>
@@ -73,54 +113,35 @@
             <div id="mainMenu" class="tab-pane active">
                 <ul class="nav am-sideleft-menu">
                     <li class="nav-item">
-                        <a href="{{ route('home') }}" class="nav-link">
-                            <i class="icon ion-ios-home-outline"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('anggota.tampil') }}" class="nav-link class="nav-link {{ Request::is('anggota') ? 'active' : '' }}">
-                            <i class="fa fa-briefcase" style="font-size:1.2em"></i> 
+                        <a href="{{ route('anggota.tampil') }}" class="nav-link {{ Request::is('anggota') ? 'active' : '' }}">
+                            <i class="fa fa-users" style="font-size:1.2em"></i> 
                             <span>Anggota</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route("buku.tampil") }}" class="nav-link class="nav-link class="nav-link {{ Request::is('buku') ? 'active' : '' }}">
-                            <i class="fa fa-briefcase" style="font-size:1.2em"></i> 
+                        </a>                                      
+                        <a href="{{ route("buku.tampil") }}" class="nav-link {{ Request::is('buku') ? 'active' : '' }}">
+                            <i class="fa fa-book" style="font-size:1.2em"></i> 
                             <span>Buku</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route("kategori.tampil")}}" class="nav-link class="nav-link class="nav-link {{ Request::is('kategori') ? 'active' : '' }}">
-                            <i class="fa fa-briefcase" style="font-size:1.2em"></i> 
+                        </a>                                      
+                        <a href="{{ route("kategori.tampil")}}" class="nav-link {{ Request::is('kategori') ? 'active' : '' }}">
+                            <i class="fa fa-list" style="font-size:1.2em"></i> 
                             <span>Kategori Buku</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route("pengguna.tampil")}}" class="nav-link class="nav-link class="nav-link {{ Request::is('pengguna') ? 'active' : '' }}">
-                            <i class="fa fa-briefcase" style="font-size:1.2em"></i> 
+                        </a>                                       
+                        <a href="{{ route("pengguna.tampil")}}" class="nav-link {{ Request::is('pengguna') ? 'active' : '' }}">
+                            <i class="fa fa-user" style="font-size:1.2em"></i> 
                             <span>Pengguna</span>
-                        </a>
-                    </li>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route("peminjam.tampil")}}" class="nav-link class="nav-link class="nav-link {{ Request::is('peminjam') ? 'active' : '' }}">
-                            <i class="fa fa-briefcase" style="font-size:1.2em"></i> 
+                        </a>                                      
+                        <a href="{{ route("peminjam.tampil")}}" class="nav-link {{ Request::is('peminjam') ? 'active' : '' }}">
+                            <i class="fa fa-hand-paper-o" style="font-size:1.2em"></i> 
                             <span>Peminjam</span>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route("pengembalian.tampil")}}" class="nav-link class="nav-link class="nav-link {{ Request::is('pengembalian') ? 'active' : '' }}">
-                            <i class="fa fa-briefcase" style="font-size:1.2em"></i> 
+                        <a href="{{ route("pengembalian.tampil")}}" class="nav-link {{ Request::is('pengembalian') ? 'active' : '' }}">
+                            <i class="fa fa-handshake-o" style="font-size:1.2em"></i> 
                             <span>Pengembalian</span>
                         </a>
-                    </li>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route("detail_pengembalian.tampil")}}" class="nav-link class="nav-link class="nav-link {{ Request::is('detail_pengembalian') ? 'active' : '' }}">
+                        <a href="{{ route("detail_peminjaman.tampil")}}" class="nav-link {{ Request::is('detail_peminjaman') ? 'active' : '' }}">
                             <i class="fa fa-briefcase" style="font-size:1.2em"></i> 
-                            <span>detail Pengembalian</span>
+                            <span>Detail Peminjaman</span>
                         </a>
+                 
                     </li>
                     
 
@@ -209,5 +230,16 @@
     </script>
 
 </body>
-
+<script>
+    $(document).ready(function() {
+        // Kita matikan dulu fungsi bawaan amanda.js (pakai off) biar tidak bentrok
+        // Lalu pasang fungsi klik kita sendiri
+        $('#naviconLeft').off('click').on('click', function(e) {
+            e.preventDefault(); // Mencegah halaman nge-refresh ke atas
+            
+            // Tambah atau hapus class 'sidebar-aktif' pada tag body
+            $('body').toggleClass('sidebar-aktif');
+        });
+    });
+</script>
 </html>

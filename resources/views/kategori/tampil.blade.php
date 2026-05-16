@@ -1,19 +1,16 @@
 @extends('layout.menu')
 @section('konten')
 <div class="card">
-    <div class="card-header">
-        <b>Data Kategori</b>
-    </div>
 
     <div class="card-body">
-        <a href="{{ route('kategori.tambah') }}" class="btn btn-primary mb-3">Tambah Data</a>
+        <a href="{{ route('kategori.tambah') }}" class="btn btn-primary mb-3"><i class="fa fa-plus-square"></i>&nbsp; Tambah Data</a>
         <table class="table table-bordered table-hover" style="width:100%; font-family:Helvetica">
         <thead>
             <tr>
                 <td>Nomor</td>
                 <td>nama kategori</td>
                 <td>Deskripsi</td>
-                <td>Aksi</td>
+                <td style="width: 100px;">Aksi</td>
             </tr>
         </thead>
         <tbody>
@@ -29,7 +26,7 @@
                     <a href="{{ route('kategori.edit', $d->id) }}" class="btn btn-success btn-sm khusus mb-1"><i class="fa fa-edit"></i></a>
                     <button type="button" class="btn btn-danger btn-sm mb-1" 
                     onclick="confirmDelete({{ $d->id }})" title="Hapus Data"><i class="fa fa-trash"></i></button>
-                </form>
+                    </form>
                 </td>
             </tr>
             @endforeach

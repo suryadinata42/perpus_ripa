@@ -9,15 +9,14 @@ class ControlPengembalian extends Controller
 {
     public function tampil()
     {
-        $pengembalian = DB::table('pengembalian')
-        ->leftJoin('peminjam', 'pengembalian.peminjam_id', '=', 'peminjam.id')
-        ->get();
-        return view('pengembalian.tampil',compact('pengembalian'));
+        $judul = 'Data Pengembalian';
+        $pengembalian = ModelPengembalian::all();
+        return view('pengembalian.tampil',compact('pengembalian','judul'));
     }
     public function tambah()
     {
-        $pesanan = DB::table('pesanan')->get();
-        return view('pengembalian.tambah', compact('pesanan'));
+        
+        return view('pengembalian.tambah');
     }
 
     public function simpan(Request $request)

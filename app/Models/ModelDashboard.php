@@ -23,4 +23,24 @@ class ModelDashboard extends Model
 	{
 		return DB::table('kategori')->count();
 	}
+
+	public function jumlah_pengguna()
+	{
+		return DB::table('pengguna')->count();
+	}
+
+	public function jumlah_peminjaman()
+	{
+		return DB::table('peminjam')->count();
+	}
+
+	public function jumlah_pengembalian()
+	{
+		return DB::table('pengembalian')->count();
+	}
+
+	public function jumlah_detail_peminjaman()
+	{
+		return DB::table('detail_peminjaman')->count();
+	}
 }

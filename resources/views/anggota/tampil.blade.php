@@ -1,12 +1,10 @@
 @extends('layout.menu')
 @section('konten')
 <div class="card">
-    <div class="card-header">
-        <b>Data Anggota</b>
-    </div>
+
 
      <div class="card-body">
-        <a href="{{ route('anggota.tambah') }}" class="btn btn-primary mb-3">Tambah Data</a>
+        <a href="{{ route('anggota.tambah') }}" class="btn btn-primary mb-3"> <i class="fa fa-plus-square"></i>&nbsp; Tambah Data</a>
         <table class="table table-bordered table-hover" style="width:100%; font-family:Helvetica">
         <thead>
             <tr>
@@ -18,7 +16,7 @@
                 <td>email</td>
                 <td>tanggal daftar</td>
                 <td>status</td>
-                <td>Aksi</td>
+                <td style="width: 100px;">Aksi</td>
             </tr>
         </thead>
         <tbody>

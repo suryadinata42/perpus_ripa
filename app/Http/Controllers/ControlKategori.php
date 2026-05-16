@@ -10,7 +10,7 @@ class ControlKategori extends Controller
     {
         $judul = 'Data kategori';
         $kategori = ModelKategori::all();
-        return view("kategori.tampil",compact('kategori'));
+        return view("kategori.tampil",compact('kategori','judul'));
     }
 
     public function tambah()
