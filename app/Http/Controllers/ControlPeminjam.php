@@ -31,6 +31,7 @@ class ControlPeminjam extends Controller
             
         ]);
         $peminjam = new ModelPeminjam();
+        $peminjam -> id = $request->id;
         $peminjam -> anggota_id = $request->anggota_id;
         $peminjam -> pengguna_id = $request->pengguna_id;
         $peminjam -> tanggal_pinjam = $request->tanggal_pinjam;
@@ -57,6 +58,7 @@ class ControlPeminjam extends Controller
         ]);
 
         $peminjam = ModelPeminjam::findOrFail($id);
+        $peminjam -> id = $request->id;
         $peminjam -> anggota_id = $request->anggota_id;
         $peminjam -> pengguna_id = $request->pengguna_id;
         $peminjam -> tanggal_pinjam = $request->tanggal_pinjam;

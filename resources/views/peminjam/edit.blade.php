@@ -6,6 +6,14 @@
     @method('PUT')
 
     <div class="form-group mb-3">
+        <label for="id">ID Peminjam</label>
+        <input type="text" name="id" id="id" class="form-control" required value="{{ old('id', $peminjam->id) }}">
+        @error('id') 
+            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
+        @enderror
+    </div>
+
+    <div class="form-group mb-3">
         <label for="anggota_id">Anggota ID</label>
         <select name="anggota_id" id="anggota_id" class="form-control" required>
             <option value="">-- Pilih Kode Anggota --</option>

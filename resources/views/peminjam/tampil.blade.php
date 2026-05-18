@@ -8,6 +8,7 @@
         <thead>
             <tr>
                 <td>Nomor</td>
+                <td>ID peminjam</td>
                 <td>Anggota ID</td>
                 <td>Pengguna ID</td>
                 <td>Tanggal Pinjam</td>
@@ -20,6 +21,7 @@
             @foreach ($peminjam as $d)
             <tr>
                 <td>{{ $loop->iteration}}</td>
+                <td>{{ $d->id}}</td>
                 <td>{{ $d->kode_anggota}}</td>
                 <td>{{ $d->pengguna_id}}</td>
                 <td>{{ $d->tanggal_pinjam}}</td>

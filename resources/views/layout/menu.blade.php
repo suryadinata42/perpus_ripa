@@ -75,12 +75,21 @@
 
             <div class="dropdown dropdown-profile">
                 <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-                    <img src="img/img3.jpg" class="wd-32 rounded-circle" alt="">
-                    <span class="hidden-xs-down">{{ Auth::user()->name }}</span><i class="fa fa-angle-down mg-l-3"></i></span>
+                    
+                    <!-- Pengecekan Foto Profil untuk Navbar -->
+                    @if(Auth::user()->foto_profil)
+                        <img src="{{ asset('storage/' . Auth::user()->foto_profil) }}" class="wd-32 rounded-circle me-3" style="object-fit: cover; height: 32px;" alt="Profile">
+                    @else
+                        <!-- Menggunakan img6.jpg lokal jika belum ada foto -->
+                        <img src="{{ asset('assets/img/ahay.jpg') }}" class="wd-32 rounded-circle me-3" style="object-fit: cover; height: 32px; margin-right: 8px;" alt="Default Profile">
+                    @endif
+
+                    <span class="hidden-xs-down">{{ Auth::user()->name }}</span><i class="fa fa-angle-down mg-l-3"></i>
                 </a>
+                
                 <div class="dropdown-menu wd-200">
                     <ul class="list-unstyled user-profile-nav">
-                        <li><a href=""><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>
+                        <li><a href="{{ route('profile.tampil') }}"><i class="icon ion-ios-person-outline"></i> Profile Saya</a></li>
                         <li><a href="{{ route('logout') }}"><i class="icon ion-power"></i> Sign Out</a></li>
                     </ul>
                 </div>

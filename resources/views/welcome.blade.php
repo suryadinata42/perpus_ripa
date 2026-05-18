@@ -4,12 +4,17 @@
               <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
             </ol>
             <style>
                 .carousel-inner .carousel-item img {
-                    height: 300px; /* Atur tingginya sesuai selera, misal 200px atau 250px */
-                    object-fit: cover; /* Ini trik rahasianya biar gambar gak melar */
-                    object-position: center; /* Fokus potongan gambar tetap di tengah */
+                    height: 400px; 
+                    object-fit: cover; 
+                    object-position: center; 
                 }
             </style>
             <div class="carousel-inner">
@@ -19,15 +24,30 @@
                 <div class="carousel-item">
                     <img class="d-block w-100" src="{{ asset('assets/img/b.jpg') }}" alt="Second slide">
                 </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{ asset('assets/img/d.jpg') }}" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{ asset('assets/img/e.jpg') }}" alt="Fourth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{ asset('assets/img/f.jpg') }}" alt="Fifth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{ asset('assets/img/g.jpg') }}" alt="Sixth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{ asset('assets/img/h.jpg') }}" alt="Seventh slide">
+                </div>
             </div>
-              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
         </div>
 
         <div>
@@ -35,27 +55,21 @@
                 /* Kontainer utama untuk scroll horizontal */
                 .menu-scroll-container {
                     display: flex;
-                    flex-wrap: nowrap; /* Memaksa elemen tetap 1 baris ke samping */
-                    overflow-x: auto;  /* Mengaktifkan scroll horizontal */
-                    gap: 35px;         /* Jarak konsisten antar kotak */
-                    padding-bottom: 10px; /* Jarak bawah agar efek shadow tidak terpotong */
+                    flex-wrap: nowrap; 
+                    overflow-x: auto;  
+                    gap: 35px;         
+                    padding-bottom: 10px; 
                     justify-content: center;
-                    /* Menyembunyikan scrollbar agar bersih */
                     -webkit-overflow-scrolling: touch; 
                     scrollbar-width: none; 
                     -ms-overflow-style: none; 
                 }
-                
                 .menu-scroll-container::-webkit-scrollbar {
                     display: none; 
                 }
-
-                /* Mematok ukuran kotak agar semuanya sama persis */
                 .menu-box {
-                    flex: 0 0 160px; /* Lebar kotak dikunci di 160px */
+                    flex: 0 0 160px; 
                 }
-                
-                /* Mengatur tinggi kotak agar seragam meski teksnya 2 baris */
                 .menu-box .nav-link {
                     height: 100%;
                     display: flex;

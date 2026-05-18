@@ -9,6 +9,7 @@ use App\Http\Controllers\ControlLogin;
 use App\Http\Controllers\ControlPeminjam;
 use App\Http\Controllers\ControlPengembalian;
 use App\Http\Controllers\ControlPengguna;
+use App\Http\Controllers\ControlProfile;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest'])->group(function () {
@@ -79,6 +80,8 @@ Route::put('/detail_peminjaman/{id}/update',[ControlDetailpeminjaman::class,'upd
 Route::delete('/detail_peminjaman/{id}/hapus',[ControlDetailpeminjaman::class,'hapus'])->name("detail_peminjaman.hapus");
 
 
-
+Route::get('/profile', [ControlProfile::class, 'tampil'])->name('profile.tampil');
+Route::get('/profile/edit', [ControlProfile::class, 'edit'])->name('profile.edit');
+Route::put('/profile/update', [ControlProfile::class, 'update'])->name('profile.update');
 
 
