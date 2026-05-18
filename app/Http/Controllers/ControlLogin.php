@@ -41,18 +41,10 @@ class ControlLogin extends Controller
 
     return redirect()->route('home');
     }
-    public function logout(Request $request)
+    public function logout()
     {
-        // 1. Keluarkan user menggunakan Facade Auth
-        Auth::logout();
-
-        // 2. Hancurkan session yang digunakan user saat ini agar tidak bisa digunakan lagi
-        $request->session()->invalidate();
-
-        // 3. Buat ulang token CSRF baru untuk keamanan
-        $request->session()->regenerateToken();
-
-        // 4. Lempar balik ke halaman login (sesuai name route kamu yaitu 'login')
-        return redirect()->route('login');
+    Auth::logout();
+    return redirect()->route('login')->with('logout', 'Berhasil Logout');
     }
+
 }

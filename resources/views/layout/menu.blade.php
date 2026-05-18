@@ -76,12 +76,12 @@
             <div class="dropdown dropdown-profile">
                 <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
                     <img src="img/img3.jpg" class="wd-32 rounded-circle" alt="">
-                    <span class="logged-name"><span class="hidden-xs-down">Jhon Doe</span> <i class="fa fa-angle-down mg-l-3"></i></span>
+                    <span class="hidden-xs-down">{{ Auth::user()->name }}</span><i class="fa fa-angle-down mg-l-3"></i></span>
                 </a>
                 <div class="dropdown-menu wd-200">
                     <ul class="list-unstyled user-profile-nav">
                         <li><a href=""><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>
-                        <li><a href=""><i class="icon ion-power"></i> Sign Out</a></li>
+                        <li><a href="{{ route('logout') }}"><i class="icon ion-power"></i> Sign Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -232,12 +232,9 @@
 </body>
 <script>
     $(document).ready(function() {
-        // Kita matikan dulu fungsi bawaan amanda.js (pakai off) biar tidak bentrok
-        // Lalu pasang fungsi klik kita sendiri
+
         $('#naviconLeft').off('click').on('click', function(e) {
-            e.preventDefault(); // Mencegah halaman nge-refresh ke atas
-            
-            // Tambah atau hapus class 'sidebar-aktif' pada tag body
+            e.preventDefault();
             $('body').toggleClass('sidebar-aktif');
         });
     });
