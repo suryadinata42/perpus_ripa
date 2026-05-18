@@ -15,7 +15,9 @@ class ControlKategori extends Controller
 
     public function tambah()
     {
-        return view('kategori.tambah');
+        $judul = 'Tambah Data Kategori';
+        $kategori = ModelKategori::all();
+        return view('kategori.tambah', compact('judul', 'kategori'));
     }
 
     public function simpan(request $request)
@@ -35,8 +37,9 @@ class ControlKategori extends Controller
 
     public function edit($id)
     {
+        $judul = 'Edit Data Kategori';
         $kategori = ModelKategori::findOrFail($id);
-        return view('kategori.edit',compact('kategori'));
+        return view('kategori.edit',compact('kategori', 'judul'));
     }
 
     public function update(request $request, $id)

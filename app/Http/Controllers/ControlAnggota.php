@@ -17,7 +17,9 @@ class ControlAnggota extends Controller
 
     public function tambah()
     {
-        return view ("anggota.tambah");
+        $judul = 'Tambah Data Anggota';
+        $anggota = ModelAnggota::all();
+        return view ("anggota.tambah", compact('judul', 'anggota'));
         
     }
 
@@ -29,7 +31,7 @@ class ControlAnggota extends Controller
         ]);
 
         $anggota = new ModelAnggota();
-        $anggota -> kode_anggota = $request->kode_anggota;
+        $anggota -> anggota_id = $request->anggota_id;
         $anggota -> nama = $request->nama;
         $anggota -> alamat = $request->alamat;
         $anggota -> no_hp = $request->no_hp;
@@ -42,21 +44,22 @@ class ControlAnggota extends Controller
         // return redirect()-> route('anggota.tampil')->with('Berhasil','Data Tersimpan');
     }
 
-    public function edit($id)
+    public function edit($kode_anggota)
     {
-        $anggota = ModelAnggota::findOrFail($id);
-        return view('anggota.edit',compact('anggota'));
+        $judul = 'Edit Data Anggota';
+        $anggota = ModelAnggota::where("kode_anggota", $kode_anggota)->first();
+        return view('anggota.edit',compact('anggota','judul'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $kode_anggota)
     {
         $request->validate([
             'nama' => "required|regex:/^[\pL\s]+$/u",
         ]);
 
-        $anggota = ModelAnggota::findOrFail($id);
+        $anggota = ModelAnggota::where("kode_anggota", $kode_anggota)->first();
         $anggota->update([
-            'kode_anggota' => $request->kode_anggota,
+            'anggota_id' => $request->anggota_id,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'no_hp' => $request->no_hp,
@@ -68,9 +71,9 @@ class ControlAnggota extends Controller
          return redirect()->route('anggota.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
     }
 
-    public function hapus($id)
+    public function hapus($kode_anggota)
     {
-        $anggota = ModelAnggota::findOrFail($id);
+        $anggota = ModelAnggota::where("kode_anggota", $kode_anggota)->first();
         $anggota->delete();
          return redirect()->route('anggota.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
     }

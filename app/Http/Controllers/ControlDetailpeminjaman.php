@@ -4,18 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\ModelDetailpeminjaman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ControlDetailpeminjaman extends Controller
 {
     public function tampil()
     {
         $judul = 'Data Detail Peminjaman';
-        $dpeminjaman = ModelDetailpeminjaman::all();
+        $dpeminjaman = DB::table('detail_peminjaman')
+        ->join('peminjam', 'detail_peminjaman.peminjam_id', '=', 'peminjam.id')
+        ->join('buku', 'detail_peminjaman.buku_id', '=', 'buku.kode_buku')
+        ->get();
         return view('detail_peminjaman.tampil',compact('dpeminjaman','judul'));
     }
     public function tambah()
     {
-        return view('detail_peminjaman.tambah');
+        $judul = 'Tambah Data Detail Peminjaman';
+        $peminjam = DB::table('peminjam')->get();
+        $buku = DB::table('buku')->get();
+        return view('detail_peminjaman.tambah', compact('peminjam', 'buku', 'judul'));
     }
 
     public function simpan(Request $request)
@@ -36,8 +43,11 @@ class ControlDetailpeminjaman extends Controller
 
     public function edit($id)
     {
+        $judul = 'Edit Data Detail Peminjaman';
         $dpeminjaman = ModelDetailpeminjaman::findOrFail($id);
-        return view('detail_peminjaman.edit',compact('dpeminjaman'));
+        $peminjam = DB::table('peminjam')->get();
+        $buku = DB::table('buku')->get();
+        return view('detail_peminjaman.edit',compact('dpeminjaman', 'peminjam', 'buku', 'judul'));
     }
 
     public function update(request $request, $id)

@@ -10,12 +10,19 @@ class ControlPeminjam extends Controller
     public function tampil()
     {
         $judul = 'Data Peminjam';
-        $peminjam = ModelPeminjam::all();
+        $peminjam = DB::table('peminjam')
+        ->leftJoin('anggota', 'peminjam.anggota_id', '=', 'anggota.id')
+        ->leftJoin('pengguna', 'peminjam.pengguna_id', '=', 'pengguna.id')
+        ->select('peminjam.*', 'pengguna.id as pengguna_id', 'anggota.kode_anggota')
+        ->get();
         return view('peminjam.tampil',compact('peminjam','judul'));
     }
     public function tambah()
     {
-        return view('peminjam.tambah');
+        $judul = 'Tambah Data Peminjam';
+        $anggota = DB::table('anggota')->get();
+        $pengguna = DB::table('pengguna')->get();
+        return view('peminjam.tambah',compact('anggota','pengguna', 'judul'));
     }
 
     public function simpan(Request $request)
@@ -23,7 +30,6 @@ class ControlPeminjam extends Controller
         $request->validate([
             
         ]);
-
         $peminjam = new ModelPeminjam();
         $peminjam -> anggota_id = $request->anggota_id;
         $peminjam -> pengguna_id = $request->pengguna_id;
@@ -37,8 +43,11 @@ class ControlPeminjam extends Controller
 
     public function edit($id)
     {
+        $judul = 'Edit Data Peminjam';
         $peminjam = ModelPeminjam::findOrFail($id);
-        return view('peminjam.edit',compact('peminjam'));
+        $anggota = DB::table('anggota')->get();
+        $pengguna = DB::table('pengguna')->get();
+        return view('peminjam.edit',compact('peminjam','anggota','pengguna', 'judul'));
     }
 
     public function update(request $request, $id)

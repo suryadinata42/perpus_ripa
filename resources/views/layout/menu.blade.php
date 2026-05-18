@@ -91,10 +91,10 @@
     <div class="am-sideleft">
         <ul class="nav am-sideleft-tab">
             <li class="nav-item">
-                <a href="{{ route('/') }}" class="nav-link"><i class="fa fa-home tx-24"></i></a>
+                <a href="{{ route('home') }}" class="nav-link"><i class="fa fa-home tx-24"></i></a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('home') }}" class="nav-link"><i class="fa fa-window-maximize tx-24"></i></a>
+                <a href="{{ route('dashboard.tampil') }}" class="nav-link"><i class="fa fa-window-maximize tx-24"></i></a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link non"><i class="fa fa-briefcase tx-24"></i></a>
@@ -168,7 +168,7 @@
 
     <div class="am-mainpanel">
         <div class="am-pagetitle">
-            <h5 class="am-title">{{ isset($judul) ? ($judul) : '' }}</h5>         
+            <h4 class="am-title">{{ isset($judul) ? ($judul) : '' }}</h4>         
         </div>
         <div class="am-pagebody">
 

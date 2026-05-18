@@ -10,27 +10,32 @@ class ControlPengembalian extends Controller
     public function tampil()
     {
         $judul = 'Data Pengembalian';
-        $pengembalian = ModelPengembalian::all();
+        $pengembalian = DB::table('pengembalian')
+        ->leftJoin('peminjam', 'pengembalian.peminjam_id', '=', 'peminjam.id')
+        ->select('pengembalian.*','peminjam.id as peminjam_id')
+        ->get();
         return view('pengembalian.tampil',compact('pengembalian','judul'));
     }
     public function tambah()
     {
-        
-        return view('pengembalian.tambah');
+        $judul = 'Tambah Data Pengembalian';
+        $peminjam = DB::table('peminjam')->get();
+        $pengembalian = ModelPengembalian::all();
+        return view('pengembalian.tambah', compact('peminjam', 'pengembalian', 'judul'));
     }
 
     public function simpan(Request $request)
     {
         $request->validate([
-            'nama' => "required",
-            'email' => "required", 
-            'password' => "required",
+            'peminjam_id' => "required",
+            'tanggal_dikembalikan' => "required", 
+            'kondisi_buku' => "required",
         ]);
 
         $pengembalian = new ModelPengembalian();
-        $pengembalian -> peminjam_id = $request->nama;
-        $pengembalian -> tanggal_dikembalikan = $request->email;
-        $pengembalian -> denda = $request->peran;
+        $pengembalian -> peminjam_id = $request->peminjam_id;
+        $pengembalian -> tanggal_dikembalikan = $request->tanggal_dikembalikan;
+        $pengembalian -> denda = $request->denda;
         $pengembalian -> kondisi_buku = $request->kondisi_buku;
         $pengembalian -> save();
 
@@ -39,21 +44,23 @@ class ControlPengembalian extends Controller
 
     public function edit($id)
     {
+        $judul = 'Edit Data Pengembalian';
+        $peminjam = DB::table('peminjam')->get();
         $pengembalian = ModelPengembalian::findOrFail($id);
-        return view('pengembalian.edit',compact('pengembalian'));
+        return view('pengembalian.edit',compact('pengembalian', 'peminjam', 'judul'));
     }
 
     public function update(request $request, $id)
     {
         $request->validate([
-            'email' => "required", 
-            'password' => "required",
+            'tanggal_dikembalikan' => "required", 
+            'kondisi_buku' => "required",
         ]);
 
         $pengembalian = ModelPengembalian::findOrFail($id);
-        $pengembalian -> peminjam_id = $request->nama;
-        $pengembalian -> tanggal_dikembalikan = $request->email;
-        $pengembalian -> denda = $request->peran;
+        $pengembalian -> peminjam_id = $request->peminjam_id;
+        $pengembalian -> tanggal_dikembalikan = $request->tanggal_dikembalikan;
+        $pengembalian -> denda = $request->denda;
         $pengembalian -> kondisi_buku = $request->kondisi_buku;
         $pengembalian->save();
 

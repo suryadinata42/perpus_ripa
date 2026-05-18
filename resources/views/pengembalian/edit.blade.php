@@ -1,10 +1,8 @@
 @extends('layout.menu')
 @section('konten')
 
-<!-- Catatan: Jika ini form update, biasanya butuh ID di route-nya seperti route('pengembalian.update', $pengembalian->id) -->
-<form method="POST" action="{{ route('pengembalian.update') }}">
+<form method="POST" action="{{ route('pengembalian.update', $pengembalian->id) }}">
     @csrf
-    <!-- WAJIB ditambahkan jika ini adalah form Update/Edit -->
     @method('PUT')
 
     <div class="form-group mb-3">
@@ -12,8 +10,6 @@
         <select name="peminjam_id" id="peminjam_id" class="form-control" required>
             <option value="">-- Pilih Peminjam --</option>
             @foreach($peminjam as $pmj)
-                <!-- Perbaikan: Menggunakan $pmj->id, bukan $peminjam->id -->
-                <!-- Asumsi variabel data lama adalah $pengembalian -->
                 <option value="{{ $pmj->id }}" {{ old('peminjam_id', $pengembalian->peminjam_id ?? '') == $pmj->id ? 'selected' : '' }}>
                     {{ $pmj->id }} 
                 </option>
@@ -26,7 +22,6 @@
 
     <div class="form-group mb-3">
         <label for="tanggal_dikembaliakan">Tanggal Dikembalikan</label>
-        <!-- Hati-hati dengan typo 'dikembaliakan' pada atribut name. Saya biarkan sama dengan kode Anda agar tidak error ke Database -->
         <input type="date" name="tanggal_dikembaliakan" id="tanggal_dikembaliakan" class="form-control" required value="{{ old('tanggal_dikembaliakan', $pengembalian->tanggal_dikembaliakan ?? '') }}">
         @error('tanggal_dikembaliakan') 
             <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
@@ -34,9 +29,9 @@
     </div>
 
     <div class="form-group mb-3">
-        <label for="Denda">Denda (Rp)</label>
-        <input type="number" name="Denda" id="Denda" class="form-control" required value="{{ old('Denda', $pengembalian->Denda ?? '') }}">
-        @error('Denda') 
+        <label for="denda">Denda (Rp)</label>
+        <input type="number" name="denda" id="denda" class="form-control" required value="{{ old('Denda', $pengembalian->denda ?? '') }}">
+        @error('denda') 
             <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
         @enderror
     </div>

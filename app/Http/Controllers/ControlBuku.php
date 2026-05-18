@@ -21,8 +21,9 @@ class ControlBuku extends Controller
     }
     public function tambah()
     {
+        $judul = 'Tambah Data Buku';
         $kategori = DB::table('kategori')->get();
-        return view('buku.tambah', compact('kategori'));
+        return view('buku.tambah', compact('kategori', 'judul'));
     }
 
     public function simpan(Request $request)
@@ -53,14 +54,15 @@ class ControlBuku extends Controller
         return redirect()->route('buku.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
     }
 
-    public function edit($id)
+    public function edit($kode_buku)
     {
-        $buku = ModelBuku::where('id', $id)->first();
+        $judul = 'Edit Data Buku';
+        $buku = ModelBuku::where('kode_buku', $kode_buku)->first();
         $kategori = DB::table('kategori')->get();
-        return view('buku.edit',compact('buku','kategori'));
+        return view('buku.edit',compact('buku','kategori', 'judul'));
     }
 
-    public function update(request $request, $id)
+    public function update(request $request, $kode_buku)
     {
         $request->validate([
             'judul' => "required", 
@@ -72,7 +74,7 @@ class ControlBuku extends Controller
             'jumlah_tersedia' => "required|integer",
         ]);
 
-        $buku = ModelBuku::where('id', $id)->first();
+        $buku = ModelBuku::where('kode_buku', $kode_buku)->first();
         $buku->update([
         $buku -> kode_buku = $request->kode_buku,
         $buku -> judul = $request->judul,
@@ -88,9 +90,9 @@ class ControlBuku extends Controller
         return redirect()->route('buku.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
         
     }
-    public function hapus($id)
+    public function hapus($kode_buku)
     {
-        $buku = ModelBuku::findOrFail($id);
+        $buku = ModelBuku::where('kode_buku', $kode_buku)->first();
         $buku->delete();
         return redirect()->route('buku.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Terhapus', 'icon' => 'success']);
     }

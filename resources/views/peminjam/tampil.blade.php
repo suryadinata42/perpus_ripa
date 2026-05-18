@@ -20,7 +20,7 @@
             @foreach ($peminjam as $d)
             <tr>
                 <td>{{ $loop->iteration}}</td>
-                <td>{{ $d->anggota_id}}</td>
+                <td>{{ $d->kode_anggota}}</td>
                 <td>{{ $d->pengguna_id}}</td>
                 <td>{{ $d->tanggal_pinjam}}</td>
                 <td>{{ $d->tanggal_kembali}}</td>

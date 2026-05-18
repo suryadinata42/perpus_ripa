@@ -7,17 +7,29 @@
 
     <div class="form-group mb-3">
         <label for="anggota_id">Anggota ID</label>
-        <input type="number" name="anggota_id" id="anggota_id" class="form-control" required value="{{ old('anggota_id', $peminjam->anggota_id) }}">
-        <!-- Perbaikan: Mengubah @error('nama') menjadi @error('anggota_id') -->
-        @error('anggota_id') 
+        <select name="anggota_id" id="anggota_id" class="form-control" required>
+            <option value="">-- Pilih Kode Anggota --</option>
+            @foreach($anggota as $a)
+                <option value="{{ $a->kode_anggota }}" {{ old('kode_anggota', $peminjam->anggota_id) == $a->kode_anggota ? 'selected' : '' }}>
+                    {{ $a->kode_anggota }}  
+                </option>
+            @endforeach
+        </select>
+        @error('kode_anggota') 
             <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
         @enderror
     </div>
 
     <div class="form-group mb-3">
         <label for="pengguna_id">Pengguna ID</label>
-        <input type="number" name="pengguna_id" id="pengguna_id" class="form-control" required value="{{ old('pengguna_id', $peminjam->pengguna_id) }}">
-        <!-- Perbaikan: Mengubah @error('email') menjadi @error('pengguna_id') -->
+        <select name="pengguna_id" id="pengguna_id" class="form-control" required>
+            <option value="">-- Pilih Pengguna ID --</option>
+            @foreach($pengguna as $p)
+                <option value="{{ $p->id }}" {{ old('pengguna_id', $peminjam->pengguna_id) == $p->id ? 'selected' : '' }}>
+                    {{ $p->id }}  
+                </option>
+            @endforeach
+        </select>
         @error('pengguna_id') 
             <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
         @enderror

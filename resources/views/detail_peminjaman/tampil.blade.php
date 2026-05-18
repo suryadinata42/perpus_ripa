@@ -24,10 +24,10 @@
                     <td>{{ $d->jumlah }}</td>
                     
                     <td>
-                    <form id="delete-form-{{ $d->id }}" method="POST" action="{{ route('detail_pengembalian.hapus', $d->id) }}">
+                    <form id="delete-form-{{ $d->id }}" method="POST" action="{{ route('detail_peminjaman.hapus', $d->id) }}">
                         @csrf
                         @method('DELETE')
-                        <a href="{{ route('detail_pengembalian.edit', $d->id) }}" class="btn btn-success btn-sm khusus mb-1"><i class="fa fa-edit"></i></a>
+                        <a href="{{ route('detail_peminjaman.edit', $d->id) }}" class="btn btn-success btn-sm khusus mb-1"><i class="fa fa-edit"></i></a>
                         <button type="button" class="btn btn-danger btn-sm mb-1" 
                         onclick="confirmDelete({{ $d->id }})" title="Hapus Data"><i class="fa fa-trash"></i></button>
                     </form>

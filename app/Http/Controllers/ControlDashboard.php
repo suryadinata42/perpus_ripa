@@ -6,7 +6,7 @@ use App\Models\ModelDashboard;
 
 class ControlDashboard extends Controller
 {
-	public function index()
+	public function tampil()
 	{
 		$judul = 'Dashboard';
 		$dash = new ModelDashboard();

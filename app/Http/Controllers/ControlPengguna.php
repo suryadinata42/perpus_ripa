@@ -14,7 +14,9 @@ class ControlPengguna extends Controller
     }
     public function tambah()
     {
-        return view('pengguna.tambah');
+        $judul = 'Tambah Pengguna';
+        $pengguna = ModelPengguna::all();
+        return view('pengguna.tambah', compact('judul', 'pengguna'));
     }
 
     public function simpan(Request $request)
@@ -37,8 +39,9 @@ class ControlPengguna extends Controller
 
     public function edit($id)
     {
+        $judul = 'Edit Data Pengguna';
         $pengguna = ModelPengguna::findOrFail($id);
-        return view('pengguna.edit',compact('pengguna'));
+        return view('pengguna.edit',compact('pengguna','judul'));
     }
 
     public function update(request $request, $id)
