@@ -3,48 +3,69 @@
 <form method="POST" action="{{ route('detail_peminjaman.simpan') }}">
     @csrf
 
-    <div class="form-group mb-3">
-        <label for="peminjam_id">Anggota ID</label>
-        <select name="peminjam_id" id="peminjam_id" class="form-control" required>
-            <option value="">-- Pilih Anggota ID --</option>
-            @foreach($peminjam as $p)
-                <option value="{{ $p->id }}">
-                    {{ $p->id }}
-                </option>
-            @endforeach
-        </select>
-        @error('peminjam_id') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Anggota ID -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="peminjam_id" class="col-form-label">Anggota ID</label>
+        </div>
+        <div class="col-sm-10">
+            <select name="peminjam_id" id="peminjam_id" class="form-control" required>
+                <option value="">-- Pilih Anggota ID --</option>
+                @foreach($peminjam as $p)
+                    <option value="{{ $p->id }}" {{ old('peminjam_id') == $p->id ? 'selected' : '' }}>
+                        {{ $p->id }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-auto">
+            @error('peminjam_id') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="kode_buku">Kode Buku</label>
-        <select name="buku_id" id="buku_id" class="form-control" required>
-            <option value="">-- Pilih Kode Buku --</option>
-            @foreach($buku as $b)
-                <option value="{{ $b->kode_buku }}">
-                    {{ $b->kode_buku }}
-                </option>
-            @endforeach
-        </select>
-        @error('buku_id') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Kode Buku -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="buku_id" class="col-form-label">Kode Buku</label>
+        </div>
+        <div class="col-sm-10">
+            <select name="buku_id" id="buku_id" class="form-control" required>
+                <option value="">-- Pilih Kode Buku --</option>
+                @foreach($buku as $b)
+                    <option value="{{ $b->kode_buku }}" {{ old('buku_id') == $b->kode_buku ? 'selected' : '' }}>
+                        {{ $b->kode_buku }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-auto">
+            @error('buku_id') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="jumlah">Jumlah</label>
-        <input type="number" name="jumlah" id="jumlah" class="form-control" required>
-        @error('jumlah') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Jumlah -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="jumlah" class="col-form-label">Jumlah</label>
+        </div>
+        <div class="col-sm-10">
+            <input type="number" name="jumlah" id="jumlah" class="form-control" required value="{{ old('jumlah') }}">
+        </div>
+        <div class="col-auto">
+            @error('jumlah') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-
-    <div class="form-group mt-4">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a href="{{ route('detail_peminjaman.tampil') }}" class="btn btn-secondary">Back</a>
+    <!-- Tombol Submit -->
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp; Save</button>
+        <a href="{{ route('detail_peminjaman.tampil') }}" class="btn btn-secondary"><i class="fa fa-undo" aria-hidden="true"></i>&nbsp; Back</a>
     </div>
 </form>
 @endsection

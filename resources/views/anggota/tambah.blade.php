@@ -1,79 +1,122 @@
 @extends('layout.menu')
 @section('konten')
 
-    <form method="POST" action="{{ route('anggota.simpan') }}">
-        @csrf
+<form method="POST" action="{{ route('anggota.simpan') }}">
+    @csrf
 
-        <div class="form-group mb-3">
-            <label for="kode_anggota">Kode Anggota</label>
+    <!-- Kode Anggota -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="kode_anggota" class="col-form-label">Kode Anggota</label>
+        </div>
+        <div class="col-sm-10">
             <input type="number" name="kode_anggota" id="kode_anggota" class="form-control" required>
+        </div>
+        <div class="col-auto">
             @error('kode_anggota') 
-                <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
             @enderror
         </div>
+    </div>
 
-        <div class="form-group mb-3">
-            <label for="nama">Nama</label>
+    <!-- Nama -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="nama" class="col-form-label">Nama</label>
+        </div>
+        <div class="col-sm-10">
             <input type="text" name="nama" id="nama" class="form-control" required>
+        </div>
+        <div class="col-auto">
             @error('nama') 
-                <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
             @enderror
         </div>
+    </div>
 
-        <div class="form-group mb-3">
-            <label for="alamat">Alamat</label>
-            <!-- Menambahkan class form-control dan rows agar textarea rapi -->
+    <!-- Alamat -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="alamat" class="col-form-label">Alamat</label>
+        </div>
+        <div class="col-sm-10">
             <textarea name="alamat" id="alamat" class="form-control" rows="3" required></textarea>
+        </div>
+        <div class="col-auto">
             @error('alamat') 
-                <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
             @enderror
         </div>
+    </div>
 
-        <div class="form-group mb-3">
-            <label for="no_hp">No HP</label>
+    <!-- No HP -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="no_hp" class="col-form-label">No HP</label>
+        </div>
+        <div class="col-sm-10">
             <input type="number" name="no_hp" id="no_hp" class="form-control" required>
+        </div>
+        <div class="col-auto">
             @error('no_hp') 
-                <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
             @enderror
         </div>
+    </div>
 
-        <div class="form-group mb-3">
-            <label for="email">Email</label>
-            <!-- Mengubah type="text" menjadi type="email" -->
+    <!-- Email -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="email" class="col-form-label">Email</label>
+        </div>
+        <div class="col-sm-10">
             <input type="email" name="email" id="email" class="form-control" required>
+        </div>
+        <div class="col-auto">
             @error('email') 
-                <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
             @enderror
         </div>
+    </div>
 
-        <div class="form-group mb-3">
-            <label for="tanggal_daftar">Tanggal Daftar</label>
+    <!-- Tanggal Daftar -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="tanggal_daftar" class="col-form-label">Tanggal Daftar</label>
+        </div>
+        <div class="col-sm-10">
             <input type="date" name="tanggal_daftar" id="tanggal_daftar" class="form-control" required>
+        </div>
+        <div class="col-auto">
             @error('tanggal_daftar') 
-                <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
             @enderror
         </div>
+    </div>
 
-        <div class="form-group mb-3">
-            <label for="status">Status</label>
-            <!-- Menambahkan form-control ke dalam select -->
+    <!-- Status -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="status" class="col-form-label">Status</label>
+        </div>
+        <div class="col-sm-10">
             <select id="status" name="status" class="form-control" required>
                 <option value="aktif">Active</option>
                 <option value="nonaktif">Non-Active</option>
             </select>
-            <!-- Memindahkan error handling ke luar tag select -->
+        </div>
+        <div class="col-auto">
             @error('status') 
-                <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
             @enderror
         </div>
-
-        <div class="form-group mt-4">
-            <button type="submit" class="btn btn-primary">Save</button>
-            <a href="{{ route('anggota.tampil') }}" class="btn btn-secondary">Back</a>
-        </div>
-    </form>
-
-    <!-- Membiarkan tag penutup div jika ini terhubung dengan pembungkus di atasnya (layout) -->
     </div>
-</div>
+
+    <!-- Tombol Submit -->
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp; Save</button>
+        <a href="{{ route('anggota.tampil') }}" class="btn btn-secondary"><i class="fa fa-undo" aria-hidden="true"></i>&nbsp; Back</a>
+    </div>
+</form>
+
 @endsection

@@ -4,75 +4,118 @@
 <form method="POST" action="{{ route('peminjam.simpan') }}">
     @csrf
 
-    <div class="form-group mb-3">
-        <label for="id">ID Peminjam</label>
-        <input type="text" name="id" id="id" class="form-control" required>
-        @error('id') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- ID Peminjam -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="id" class="col-form-label">ID Peminjam</label>
+        </div>
+        <div class="col-sm-10">
+            <input type="text" name="id" id="id" class="form-control" required value="{{ old('id') }}">
+        </div>
+        <div class="col-auto">
+            @error('id') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="anggota_id">Anggota ID</label>
-        <select name="anggota_id" id="anggota_id" class="form-control" required>
-            <option value="">-- Pilih Anggota ID --</option>
-            @foreach($anggota as $a)
-                <option value="{{ $a->kode_anggota }}">
-                    {{ $a->kode_anggota }}
-                </option>
-            @endforeach
-        </select>
-        @error('anggota_id') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Anggota ID -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="anggota_id" class="col-form-label">Anggota ID</label>
+        </div>
+        <div class="col-sm-10">
+            <select name="anggota_id" id="anggota_id" class="form-control" required>
+                <option value="">-- Pilih Anggota ID --</option>
+                @foreach($anggota as $a)
+                    <option value="{{ $a->kode_anggota }}" {{ old('anggota_id') == $a->kode_anggota ? 'selected' : '' }}>
+                        {{ $a->kode_anggota }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-auto">
+            @error('anggota_id') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="pengguna_id">Pengguna ID</label>
-        <select name="pengguna_id" id="pengguna_id" class="form-control" required>
-            <option value="">-- Pilih Pengguna ID --</option>
-            @foreach($pengguna as $p)
-                <option value="{{ $p->id }}">
-                    {{ $p->id }}
-                </option>
-            @endforeach
-        </select>
-        @error('pengguna_id') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Pengguna ID -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="pengguna_id" class="col-form-label">Pengguna ID</label>
+        </div>
+        <div class="col-sm-10">
+            <select name="pengguna_id" id="pengguna_id" class="form-control" required>
+                <option value="">-- Pilih Pengguna ID --</option>
+                @foreach($pengguna as $p)
+                    <option value="{{ $p->id }}" {{ old('pengguna_id') == $p->id ? 'selected' : '' }}>
+                        {{ $p->id }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-auto">
+            @error('pengguna_id') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="tanggal_pinjam">Tanggal Pinjam</label>
-        <input type="date" name="tanggal_pinjam" id="tanggal_pinjam" class="form-control" required>
-        @error('tanggal_pinjam') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Tanggal Pinjam -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="tanggal_pinjam" class="col-form-label">Tanggal Pinjam</label>
+        </div>
+        <div class="col-sm-10">
+            <input type="date" name="tanggal_pinjam" id="tanggal_pinjam" class="form-control" required value="{{ old('tanggal_pinjam') }}">
+        </div>
+        <div class="col-auto">
+            @error('tanggal_pinjam') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="tanggal_kembali">Tanggal Kembali</label>
-        <input type="date" name="tanggal_kembali" id="tanggal_kembali" class="form-control" required>
-        @error('tanggal_kembali') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Tanggal Kembali -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="tanggal_kembali" class="col-form-label">Tanggal Kembali</label>
+        </div>
+        <div class="col-sm-10">
+            <input type="date" name="tanggal_kembali" id="tanggal_kembali" class="form-control" required value="{{ old('tanggal_kembali') }}">
+        </div>
+        <div class="col-auto">
+            @error('tanggal_kembali') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="status">Status</label>
-        <select name="status" id="status" class="form-control" required>
-            <option value="">-- Pilih Status --</option>
-            <option value="dipinjam">Dipinjam</option>
-            <option value="kembali">Kembali</option>
-        </select>
-        @error('status') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Status -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="status" class="col-form-label">Status</label>
+        </div>
+        <div class="col-sm-10">
+            <select name="status" id="status" class="form-control" required>
+                <option value="">-- Pilih Status --</option>
+                <option value="dipinjam" {{ old('status') == 'dipinjam' ? 'selected' : '' }}>Dipinjam</option>
+                <option value="kembali" {{ old('status') == 'kembali' ? 'selected' : '' }}>Kembali</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            @error('status') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mt-4">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a href="{{ route('peminjam.tampil') }}" class="btn btn-secondary">Back</a>
+    <!-- Tombol Submit -->
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp; Save</button>
+        <a href="{{ route('peminjam.tampil') }}" class="btn btn-secondary"><i class="fa fa-undo" aria-hidden="true"></i>&nbsp; Back</a>
     </div>
 </form>
 

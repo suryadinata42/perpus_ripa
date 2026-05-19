@@ -5,72 +5,118 @@
     @csrf
     @method('PUT')
 
-    <div class="form-group mb-3">
-        <label for="kode_anggota">Kode Anggota</label>
-        <input type="number" name="kode_anggota" id="kode_anggota" class="form-control" required readonly value="{{ old('kode_anggota', $anggota->kode_anggota) }}">
-        @error('kode_anggota') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Kode Anggota -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="kode_anggota" class="col-form-label">Kode Anggota</label>
+        </div>
+        <div class="col-sm-10">
+            <input type="number" name="kode_anggota" id="kode_anggota" class="form-control" required readonly value="{{ old('kode_anggota', $anggota->kode_anggota) }}">
+        </div>
+        <div class="col-auto">
+            @error('kode_anggota') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="nama">Nama</label>
-        <input type="text" name="nama" id="nama" class="form-control" required value="{{ old('nama', $anggota->nama) }}">
-        @error('nama') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Nama -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="nama" class="col-form-label">Nama</label>
+        </div>
+        <div class="col-sm-10">
+            <input type="text" name="nama" id="nama" class="form-control" required value="{{ old('nama', $anggota->nama) }}">
+        </div>
+        <div class="col-auto">
+            @error('nama') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="alamat">Alamat</label>
-        <!-- Perbaikan: Menambahkan old() pada textarea -->
-        <textarea name="alamat" id="alamat" class="form-control" rows="3" required>{{ old('alamat', $anggota->alamat) }}</textarea>
-        @error('alamat') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Alamat -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="alamat" class="col-form-label">Alamat</label>
+        </div>
+        <div class="col-sm-10">
+            <textarea name="alamat" id="alamat" class="form-control" rows="3" required>{{ old('alamat', $anggota->alamat) }}</textarea>
+        </div>
+        <div class="col-auto">
+            @error('alamat') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="no_hp">No HP</label>
-        <input type="number" name="no_hp" id="no_hp" class="form-control" required value="{{ old('no_hp', $anggota->no_hp) }}">
-        @error('no_hp') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- No HP -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="no_hp" class="col-form-label">No HP</label>
+        </div>
+        <div class="col-sm-10">
+            <input type="number" name="no_hp" id="no_hp" class="form-control" required value="{{ old('no_hp', $anggota->no_hp) }}">
+        </div>
+        <div class="col-auto">
+            @error('no_hp') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="email">Email</label>
-        <!-- Perbaikan: Mengubah type="text" menjadi type="email" -->
-        <input type="email" name="email" id="email" class="form-control" required value="{{ old('email', $anggota->email) }}">
-        @error('email') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Email -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="email" class="col-form-label">Email</label>
+        </div>
+        <div class="col-sm-10">
+            <input type="email" name="email" id="email" class="form-control" required value="{{ old('email', $anggota->email) }}">
+        </div>
+        <div class="col-auto">
+            @error('email') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="tanggal_daftar">Tanggal Daftar</label>
-        <input type="date" name="tanggal_daftar" id="tanggal_daftar" class="form-control" required value="{{ old('tanggal_daftar', $anggota->tanggal_daftar) }}">
-        @error('tanggal_daftar') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Tanggal Daftar -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="tanggal_daftar" class="col-form-label">Tanggal Daftar</label>
+        </div>
+        <div class="col-sm-10">
+            <input type="date" name="tanggal_daftar" id="tanggal_daftar" class="form-control" required value="{{ old('tanggal_daftar', $anggota->tanggal_daftar) }}">
+        </div>
+        <div class="col-auto">
+            @error('tanggal_daftar') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="status">Status</label>
-        <select id="status" name="status" class="form-control" required>
-            <!-- Perbaikan: Menambahkan logika old() dan ternary operator agar status bawaan terpilih otomatis -->
-            <option value="aktif" {{ old('status', $anggota->status) == 'aktif' ? 'selected' : '' }}>Active</option>
-            <option value="nonaktif" {{ old('status', $anggota->status) == 'nonaktif' ? 'selected' : '' }}>Non-Active</option>
-        </select>
-        <!-- Perbaikan: Memindahkan error handling ke luar tag select -->
-        @error('status') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Status -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="status" class="col-form-label">Status</label>
+        </div>
+        <div class="col-sm-10">
+            <select id="status" name="status" class="form-control" required>
+                <option value="aktif" {{ old('status', $anggota->status) == 'aktif' ? 'selected' : '' }}>Active</option>
+                <option value="nonaktif" {{ old('status', $anggota->status) == 'nonaktif' ? 'selected' : '' }}>Non-Active</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            @error('status') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mt-4">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a href="{{ route('anggota.tampil') }}" class="btn btn-secondary">Back</a>
+    <!-- Tombol Submit -->
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp; Save</button>
+        <a href="{{ route('anggota.tampil') }}" class="btn btn-secondary"><i class="fa fa-undo" aria-hidden="true"></i>&nbsp; Back</a>
     </div>
 </form>
 

@@ -5,27 +5,40 @@
     @csrf
     @method('PUT')
 
-    <div class="form-group mb-3">
-        <label for="nama_kategori">Nama Kategori</label>
-        <!-- Perbaikan: Mengubah old('nama') menjadi old('nama_kategori') -->
-        <input type="text" name="nama_kategori" id="nama_kategori" class="form-control" required value="{{ old('nama_kategori', $kategori->nama_kategori) }}">
-        @error('nama_kategori') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Nama Kategori -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="nama_kategori" class="col-form-label">Nama Kategori</label>
+        </div>
+        <div class="col-sm-10">
+            <input type="text" name="nama_kategori" id="nama_kategori" class="form-control" required value="{{ old('nama_kategori', $kategori->nama_kategori) }}">
+        </div>
+        <div class="col-auto">
+            @error('nama_kategori') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="deskripsi">Deskripsi</label>
-        <!-- Perbaikan: Menambahkan fungsi old() pada textarea -->
-        <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3" required>{{ old('deskripsi', $kategori->deskripsi) }}</textarea>
-        @error('deskripsi') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Deskripsi -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="deskripsi" class="col-form-label">Deskripsi</label>
+        </div>
+        <div class="col-sm-10">
+            <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3" required>{{ old('deskripsi', $kategori->deskripsi) }}</textarea>
+        </div>
+        <div class="col-auto">
+            @error('deskripsi') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mt-4">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a href="{{ route('kategori.tampil') }}" class="btn btn-secondary">Back</a>
+    <!-- Tombol Submit -->
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp; Save</button>
+        <a href="{{ route('kategori.tampil') }}" class="btn btn-secondary"><i class="fa fa-undo" aria-hidden="true"></i>&nbsp; Back</a>
     </div>
 </form>
 

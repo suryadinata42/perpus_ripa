@@ -4,45 +4,74 @@
 <form method="POST" action="{{ route('pengguna.simpan') }}">
     @csrf
 
-    <div class="form-group mb-3">
-        <label for="nama">Nama Pengguna</label>
-        <input type="text" name="nama" id="nama" class="form-control" required>
-        @error('nama') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Nama Pengguna -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="nama" class="col-form-label">Nama Pengguna</label>
+        </div>
+        <div class="col-sm-10">
+            <input type="text" name="nama" id="nama" class="form-control" required>
+        </div>
+        <div class="col-auto">
+            @error('nama') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" class="form-control" required>
-        @error('email') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Email -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="email" class="col-form-label">Email</label>
+        </div>
+        <div class="col-sm-10">
+            <input type="email" name="email" id="email" class="form-control" required>
+        </div>
+        <div class="col-auto">
+            @error('email') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="form-control" required>
-        @error('password') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Password -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="password" class="col-form-label">Password</label>
+        </div>
+        <div class="col-sm-10">
+            <input type="password" name="password" id="password" class="form-control" required>
+        </div>
+        <div class="col-auto">
+            @error('password') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        <label for="peran">Peran Pengguna</label>
-        <select name="peran" id="peran" class="form-control" required>
-            <option value="">-- Pilih Peran --</option>
-            <option value="admin">Admin</option>
-            <option value="petugas">Petugas</option>
-        </select>
-        @error('peran') 
-            <div class="text-danger" style="color: red; font-size: 0.9em;">{{ $message }}</div> 
-        @enderror
+    <!-- Peran Pengguna -->
+    <div class="row g-2 align-items-center mb-3">
+        <div class="col-sm-2">
+            <label for="peran" class="col-form-label">Peran Pengguna</label>
+        </div>
+        <div class="col-sm-10">
+            <select name="peran" id="peran" class="form-control" required>
+                <option value="">-- Pilih Peran --</option>
+                <option value="admin">Admin</option>
+                <option value="petugas">Petugas</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            @error('peran') 
+                <span class="text-danger" style="font-size: 0.9em;">{{ $message }}</span> 
+            @enderror
+        </div>
     </div>
 
-    <div class="form-group mt-4">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a href="{{ route('pengguna.tampil') }}" class="btn btn-secondary">Back</a>
+    <!-- Tombol Submit -->
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp; Save</button>
+        <a href="{{ route('pengguna.tampil') }}" class="btn btn-secondary"><i class="fa fa-undo" aria-hidden="true"></i>&nbsp; Back</a>
     </div>
 </form>
 

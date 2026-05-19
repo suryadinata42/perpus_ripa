@@ -12,7 +12,7 @@
                 <td>Tanggal Dikembaliakan</td>
                 <td>denda</td>
                 <td>kondisi Buku</td>
-                <td style="display: 100px;">Aksi</td>
+                <td style="width: 100px;">Aksi</td>
             </tr>
         </thead>
         <tbody>

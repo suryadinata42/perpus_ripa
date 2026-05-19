@@ -70,6 +70,6 @@ class ControlDetailpeminjaman extends Controller
     {
         $dpeminjaman = ModelDetailpeminjaman::findOrFail($id);
         $dpeminjaman->delete();
-        return redirect()->route('detail_peminjaman.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Tersimpan', 'icon' => 'success']);
+        return redirect()->route('detail_peminjaman.tampil')->with('status', ['judul' => 'Berhasil', 'pesan' => 'Data Dihapus', 'icon' => 'success']);
     }
 }

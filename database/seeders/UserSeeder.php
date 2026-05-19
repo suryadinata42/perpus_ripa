@@ -18,16 +18,23 @@ class UserSeeder extends Seeder
                 'name' => 'Admin',
                 'username' => 'admin', // field tambahan baru
                 'email' => 'admin@example.com',
-                'password' => Hash::make('password'), // pastikan untuk meng-hash password
+                'password' => Hash::make('123456'), // pastikan untuk meng-hash password
                 'level' => 'admin', // field tambahan baru
             ],
             [
                 'username'=>'user1',
                 'name'=>'Akun User1',
                 'email'=>'user1@gmail.com',
-                'level'=>'user',
+                'level'=>'petugas',
                 'password'=>Hash::make('123456')
-        ],
+            ],
+            [
+                'username'=>'anggota1',
+                'name'=>'Akun Anggota1',
+                'email'=>'anggota1@gmail.com',
+                'level'=>'anggota',
+                'password'=>Hash::make('123456')
+            ],
         ];
     
         foreach ($users as $key => $value) {
